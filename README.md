@@ -104,12 +104,14 @@ chmod +x scripts/*.sh
 # Review and customize configuration files
 nano configs/openclaw/config.yaml
 Configuration Steps
-
+```
 1. Security Configuration (configs/security/):
   • Update SSH keys in ssh_config
   • Configure firewall rules in ufw_rules
   • Set up fail2ban if needed
+
 2. API Integration:
+```bash
 # Set environment variables (add to ~/.bashrc or use .env file)
 export TELEGRAM_BOT_TOKEN="your_telegram_bot_token"
 export DEEPSEEK_API_KEY="your_deepseek_api_key"
@@ -129,6 +131,7 @@ sudo journalctl -u openclaw-agent -f
 
 # Test Telegram bot
 # Send a message to your bot on Telegram
+```
 
 📁 Project Structure
 
@@ -319,11 +322,10 @@ Alex Conesa Piñeiro - Junior Developer specializing in Automation & AI Agents
 
 • 🎯 Focus: Automation, AI Agents, DevOps, System Integration
 • 📍 Location: Getafe, Madrid, Spain
-• 🚗 Mobility: Driving license + own vehicle
 • 🌍 Work Authorization: Spanish/EU work permit
 • 🔗 LinkedIn: linkedin.com/in/alex-conesa-piñeiro
 • 📧 Email: alexconepi@gmail.com
-• 🐙 GitHub: github.com/YOUR_USERNAME
+• 🐙 GitHub: github.com/alexconepi-cmd
 
 About This Project
 
@@ -362,4 +364,4 @@ Inspiration
 
 "Built with the Cuban spirit of resilience - where limitations become opportunities for creativity, and every challenge is just another ingredient in the recipe for success." 🦞
 
-**(Continúa en el siguiente mensaje con los demás archivos...)**
+
