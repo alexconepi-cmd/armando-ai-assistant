@@ -33,3 +33,25 @@ Armando is a fully configured AI assistant running on a VPS, designed to provide
 - **Automated Setup**: Scripts for reproducible deployment
 
 ## 🏗️ Architecture
+**Key Components:**
+1. **VPS Layer**: Ubuntu Server with security measures
+2. **Application Layer**: OpenClaw agent with custom skills
+3. **Integration Layer**: Telegram + DeepSeek APIs
+4. **Persistence Layer**: File-based memory and workspace
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Ubuntu 22.04+ VPS
+- OpenClaw installation
+- Telegram Bot Token (from @BotFather)
+- DeepSeek API Key
+
+### Basic Setup
+```bash
+# Clone this repository
+git clone https://github.com/YOUR_USERNAME/armando-ai-assistant.git
+cd armando-ai-assistant
+
+# Review configuration files
+ls configs/
