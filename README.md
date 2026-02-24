@@ -5,12 +5,14 @@
 ![Linux](https://img.shields.io/badge/Linux-Ubuntu%20Server-green)
 ![Telegram](https://img.shields.io/badge/Telegram-Bot%20API-blue)
 ![Status](https://img.shields.io/badge/Status-24%2F7%20Online-brightgreen)
+![DevOps](https://img.shields.io/badge/DevOps-Basics-yellow)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-**Personal AI assistant configured for 24/7 operation, specializing in career coaching, task automation, and technical mentorship.**
+**Personal AI assistant configured for 24/7 operation, specializing in career coaching, task automation, and technical mentorship. Built from scratch in 5 days as a learning project.**
 
 ## 🎯 Overview
 
-Armando is a fully configured AI assistant running on a VPS, designed to provide continuous support for career development in tech. This project demonstrates practical skills in DevOps, system integration, and AI automation.
+Armando is a fully configured AI assistant running on a VPS, designed to provide continuous support for career development in tech. This project demonstrates practical skills in DevOps, system integration, and AI automation - all learned and implemented in under a week.
 
 ## ✨ Features
 
@@ -19,39 +21,345 @@ Armando is a fully configured AI assistant running on a VPS, designed to provide
 - **Career Coaching**: CV optimization, interview preparation, job search strategies
 - **Task Automation**: Email filtering, calendar management, notification systems
 - **Technical Mentorship**: Code reviews, learning paths, project guidance
+- **Conversational Memory**: Context-aware conversations with persistent history
 
 ### 🔧 **Technical Implementation**
-- **VPS Configuration**: Ubuntu Server with security hardening (firewall, SSH, users)
-- **System Integration**: OpenClaw + DeepSeek API + Telegram Bot API
-- **Service Management**: systemd services for reliable 24/7 operation
-- **Memory Persistence**: Workspace and conversation history management
+- **VPS Configuration**: Ubuntu Server 22.04 with security hardening (UFW firewall, SSH key authentication, user management)
+- **System Integration**: OpenClaw + DeepSeek API + Telegram Bot API seamless integration
+- **Service Management**: systemd services for reliable 24/7 operation with auto-restart
+- **Memory Persistence**: Workspace and conversation history management via file-based storage
+- **Prompt Engineering**: Custom skill development for specific use cases
 
 ### 🛠️ **DevOps & Infrastructure**
-- **Security First**: SSH key authentication, firewall rules, user permissions
-- **Monitoring**: Basic system health checks and logging
-- **Backup Systems**: Configuration backup and recovery procedures
-- **Automated Setup**: Scripts for reproducible deployment
+- **Security First**: SSH key authentication only, firewall rules, non-root user, fail2ban setup
+- **Monitoring**: Basic system health checks, resource monitoring, and logging
+- **Backup Systems**: Automated configuration backup and recovery procedures
+- **Automated Setup**: Bash scripts for reproducible deployment and configuration
+- **Service Reliability**: Proper logging, error handling, and recovery mechanisms
 
 ## 🏗️ Architecture
-**Key Components:**
-1. **VPS Layer**: Ubuntu Server with security measures
-2. **Application Layer**: OpenClaw agent with custom skills
-3. **Integration Layer**: Telegram + DeepSeek APIs
-4. **Persistence Layer**: File-based memory and workspace
+┌───────────────────────────────────────────────────────────┐
+│                    User Interaction Layer                 │
+│  ┌────────────┐    ┌────────────┐    ┌─────────────────┐  │
+│  │  Telegram  │◄──►│  WhatsApp  │◄──►│  Web Interface  │  │
+│  │    Bot     │    │ Integration│    │   (Future)      │  │
+│  └────────────┘    └────────────┘    └─────────────────┘  │
+└───────────────────────────┬───────────────────────────────┘
+                            │
+┌───────────────────────────▼──────────────────────────────┐
+│                 OpenClaw Agent Layer                     │
+│  ┌────────────────────────────────────────────────────┐  │
+│  │  Core Agent: Memory, Skills, Workspace Management  │  │
+│  │  • File-based persistence                          │  │
+│  │  • Skill routing and execution                     │  │
+│  │  • Context management                              │  │
+│  └────────────────────────────────────────────────────┘  │
+└───────────────────────────┬──────────────────────────────┘
+                            │
+┌───────────────────────────▼───────────────────────────────┐
+│                    AI Service Layer                       │
+│  ┌────────────┐    ┌────────────┐    ┌─────────────────┐  │
+│  │ DeepSeek   │    │  Gemini    │    │  OpenAI (Future)│  │
+│  │   API      │    │    API     │    │                 │  │
+│  └────────────┘    └────────────┘    └─────────────────┘  │
+└───────────────────────────────────────────────────────────┘
+                            │
+┌───────────────────────────▼───────────────────────────────┐
+│                 Infrastructure Layer                      │
+│  ┌────────────┐    ┌────────────┐    ┌─────────────────┐  │
+│  │ Ubuntu VPS │    │  systemd   │    │  File System    │  │
+│  │  24.04 LTS │    │  Services  │    │   Storage       │  │
+│  └────────────┘    └────────────┘    └─────────────────┘  │
+└───────────────────────────────────────────────────────────┘
+
+**Data Flow:**
+1. **Input**: User message via Telegram → Telegram Bot API
+2. **Processing**: OpenClaw agent processes with context from memory
+3. **AI Generation**: Request to DeepSeek API with engineered prompt
+4. **Response**: Formatted reply sent back through Telegram
+5. **Persistence**: Conversation history saved to workspace files
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Ubuntu 22.04+ VPS
+- Ubuntu 22.04+ VPS (2GB RAM minimum, 20GB SSD)
+- Python 3.8 or higher
 - OpenClaw installation
-- Telegram Bot Token (from @BotFather)
-- DeepSeek API Key
+- Telegram Bot Token (from [@BotFather](https://t.me/botfather))
+- DeepSeek API Key (from [DeepSeek Platform](https://platform.deepseek.com/))
 
 ### Basic Setup
+
 ```bash
 # Clone this repository
 git clone https://github.com/YOUR_USERNAME/armando-ai-assistant.git
 cd armando-ai-assistant
 
-# Review configuration files
-ls configs/
+# Make setup scripts executable
+chmod +x scripts/*.sh
+
+# Run initial VPS setup (review before running!)
+./scripts/setup-vps.sh
+
+# Review and customize configuration files
+nano configs/openclaw/config.yaml
+Configuration Steps
+
+1. Security Configuration (configs/security/):
+  • Update SSH keys in ssh_config
+  • Configure firewall rules in ufw_rules
+  • Set up fail2ban if needed
+2. API Integration:
+# Set environment variables (add to ~/.bashrc or use .env file)
+export TELEGRAM_BOT_TOKEN="your_telegram_bot_token"
+export DEEPSEEK_API_KEY="your_deepseek_api_key"
+export OPENCLAW_WORKSPACE="/path/to/workspace"3. Service Setup:
+# Copy systemd service file
+sudo cp configs/systemd/openclaw-agent.service /etc/systemd/system/
+
+# Enable and start the service
+sudo systemctl daemon-reload
+sudo systemctl enable openclaw-agent
+sudo systemctl start openclaw-agent
+
+# Check status
+sudo systemctl status openclaw-agent4. Verification:
+# Check logs
+sudo journalctl -u openclaw-agent -f
+
+# Test Telegram bot
+# Send a message to your bot on Telegram
+
+📁 Project Structure
+
+armando-ai-assistant/
+├── .github/
+│   └── workflows/          # GitHub Actions for CI/CD
+├── configs/                # Configuration templates
+│   ├── openclaw/          # OpenClaw configuration
+│   │   ├── config.yaml    # Main agent configuration
+│   │   ├── skills/        # Custom skill definitions
+│   │   └── memory/        # Memory setup templates
+│   ├── systemd/           # Service management
+│   │   ├── openclaw-agent.service
+│   │   └── openclaw-agent.timer
+│   └── security/          # Security configurations
+│       ├── ssh_config
+│       ├── ufw_rules
+│       └── fail2ban.local
+├── scripts/               # Automation and utility scripts
+│   ├── setup-vps.sh       # Initial VPS setup and hardening
+│   ├── deploy-agent.sh    # Agent deployment script
+│   ├── backup-config.sh   # Configuration backup
+│   ├── monitor-system.sh  # System monitoring
+│   └── update-agent.sh    # Agent update procedure
+├── docs/                  # Comprehensive documentation
+│   ├── architecture.md    # Detailed architecture
+│   ├── setup-guide.md     # Step-by-step setup
+│   ├── security-guide.md  # Security best practices
+│   ├── troubleshooting.md # Common issues and solutions
+│   └── api-reference.md   # API integration guide
+├── examples/              # Usage examples and tutorials
+│   ├── basic-usage.md     # Getting started with the agent
+│   ├── custom-skill.md    # Creating custom skills
+│   └── integration-guide.md # Integrating with other services
+├── tests/                 # Test scripts
+│   └── basic-test.sh      # Basic functionality tests
+├── .gitignore             # Git ignore rules
+├── LICENSE                # MIT License
+├── README.md              # This file
+
+└── CHANGELOG.md           # Project changelog🔧 Technical Details
+
+Security Implementation
+
+• SSH Hardening: Key-based authentication only, root login disabled
+• Firewall Configuration: UFW with minimal required ports (22, optional 80/443)
+• User Management: Non-root user with sudo privileges
+• Service Isolation: Dedicated user for OpenClaw agent
+• Regular Updates: Automated security updates enabled
+
+Performance Considerations
+
+• Resource Monitoring: Basic monitoring for CPU, memory, disk usage
+• Log Rotation: Configured to prevent disk space issues
+• Backup Strategy: Regular backups of configurations and workspace
+• Error Handling: Graceful degradation and recovery procedures
+
+Scalability Features
+
+• Modular Design: Easy to add new skills or integrations
+• Configuration Management: Environment-based configuration
+• Service Management: Proper init system integration
+• Monitoring Ready: Structured logs for external monitoring
+
+🎓 Learning Outcomes & Skills Demonstrated
+
+This project was built from scratch in 5 days and demonstrates practical skills in:
+
+🏗️ DevOps & System Administration
+
+• VPS Management: Ubuntu Server setup, maintenance, and security
+• Service Configuration: systemd services for 24/7 operation
+• Security Hardening: SSH, firewall, user permissions, best practices
+• Backup & Recovery: Configuration backup strategies
+
+🔌 System Integration
+
+• API Integration: REST APIs consumption (Telegram, DeepSeek)
+• Multi-Service Architecture: Coordinating multiple services
+• File System Management: Persistent storage and workspace organization
+• Network Configuration: Port management, firewall rules
+
+🤖 AI & Automation
+
+• Prompt Engineering: Crafting effective prompts for specific tasks
+• Conversational AI: Context management and memory persistence
+• Skill Development: Creating custom automation workflows
+• Agent Configuration: Tuning AI behavior and responses
+
+📊 Project Management
+
+• Rapid Learning: Acquiring new skills quickly under time constraints
+• Problem Solving: Using AI tools (Gemini, ChatGPT) strategically for technical challenges
+• Documentation: Comprehensive docs for reproducibility
+• Version Control: Professional Git workflow and repository management
+
+🔒 Security Notes
+
+⚠️ CRITICAL SECURITY PRACTICES:
+
+1. Never commit sensitive data:
+# Add to .gitignore
+*.key
+*.pem
+*.env
+configs/secrets/2. Use environment variables:
+# Store in ~/.bashrc or separate .env file
+export TELEGRAM_BOT_TOKEN="your_token_here"
+export DEEPSEEK_API_KEY="your_key_here"3. Regular security updates:
+# Enable automatic security updates
+sudo apt install unattended-upgrades
+sudo dpkg-reconfigure --priority=low unattended-upgrades4. Monitor access logs:
+# Check authentication attempts
+sudo tail -f /var/log/auth.log🚨 Troubleshooting
+
+Common Issues
+
+1. Service won't start:
+# Check logs
+sudo journalctl -u openclaw-agent -xe
+
+# Verify permissions
+sudo chown -R openclaw:openclaw /opt/openclaw2. Telegram bot not responding:
+# Verify token is set
+echo $TELEGRAM_BOT_TOKEN
+
+# Check bot is started with BotFather
+# Send /start to @BotFather3. High resource usage:
+# Monitor resources
+htop
+df -h4. Connection issues:
+# Check firewall
+sudo ufw status
+
+# Test API connectivity
+curl -I https://api.deepseek.comDebug Mode
+
+# Run agent in foreground for debugging
+cd /opt/openclaw
+python3 -m openclaw --config configs/openclaw/config.yaml --verbose
+
+📈 Future Enhancements
+
+Planned Features
+
+• [ ] Web dashboard for monitoring and control
+• [ ] WhatsApp integration via WhatsApp Web API
+• [ ] Email automation (send/receive/parse)
+• [ ] Calendar integration (Google Calendar, Outlook)
+• [ ] Advanced analytics and reporting
+• [ ] Multi-agent architecture for specialized tasks
+• [ ] Docker containerization for easier deployment
+• [ ] Kubernetes configuration for scaling
+
+Technical Improvements
+
+• [ ] Database integration (PostgreSQL/Redis)
+• [ ] API rate limiting and caching
+• [ ] Advanced monitoring (Prometheus/Grafana)
+• [ ] Automated testing suite
+• [ ] CI/CD pipeline
+• [ ] Configuration management (Ansible/Terraform)
+
+🤝 Contributing
+
+While this is primarily a personal project, contributions are welcome! Here's how:
+
+1. Fork the repository
+2. Create a feature branch (git checkout -b feature/amazing-feature)
+3. Commit your changes (git commit -m 'Add some amazing feature')
+4. Push to the branch (git push origin feature/amazing-feature)
+5. Open a Pull Request
+
+Contribution Guidelines
+
+• Follow existing code style and structure
+• Update documentation for new features
+• Add tests where applicable
+• Ensure no sensitive data is committed
+
+📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+👨‍💻 Author
+
+Alex Conesa Piñeiro - Junior Developer specializing in Automation & AI Agents
+
+• 🎯 Focus: Automation, AI Agents, DevOps, System Integration
+• 📍 Location: Getafe, Madrid, Spain
+• 🚗 Mobility: Driving license + own vehicle
+• 🌍 Work Authorization: Spanish/EU work permit
+• 🔗 LinkedIn: linkedin.com/in/alex-conesa-piñeiro
+• 📧 Email: alexconepi@gmail.com
+• 🐙 GitHub: github.com/YOUR_USERNAME
+
+About This Project
+
+This project was built as a hands-on learning experience to demonstrate practical skills in:
+
+• Rapid skill acquisition: Learned and implemented complex systems in 5 days
+• Problem-solving with AI: Strategic use of tools like Gemini and ChatGPT
+• Real-world DevOps: From zero to production-ready system
+• Project ownership: Complete lifecycle from idea to 24/7 operation
+
+🙏 Acknowledgments
+
+• OpenClaw for providing an amazing open-source agent framework
+• DeepSeek for powerful and accessible AI capabilities
+• Google Gemini & OpenAI ChatGPT for being invaluable learning and problem-solving tools
+• The open-source community for endless resources, tutorials, and inspiration
+• Telegram for their excellent Bot API and platform
+
+📚 Resources & References
+
+Learning Resources Used
+
+• OpenClaw Documentation
+• DigitalOcean VPS Tutorials
+• Linux Server Security Hardening Guide
+• Telegram Bot API Documentation
+• DeepSeek API Documentation
+
+Inspiration
+
+• This project was inspired by the need to create tangible proof of skills for a tech career transition
+• The "learn by doing" philosophy of building something real rather than just following tutorials
+• The Cuban saying: "Con lo que haya, se resuelve" (With what's available, we solve it)
+
+───
+
+"Built with the Cuban spirit of resilience - where limitations become opportunities for creativity, and every challenge is just another ingredient in the recipe for success." 🦞
+
+**(Continúa en el siguiente mensaje con los demás archivos...)**
