@@ -95,7 +95,7 @@ Armando is a fully configured AI assistant running on a VPS, designed to provide
 
 ```bash
 # Clone this repository
-git clone https://github.com/YOUR_USERNAME/armando-ai-assistant.git
+git clone https://github.com/alexconepi-cmd/armando-ai-assistant.git
 cd armando-ai-assistant
 
 # Make setup scripts executable
@@ -389,7 +389,7 @@ SOFTWARE.
 - 🌍 **Work Authorization**: Spanish/EU work permit
 - 🔗 **LinkedIn**: [linkedin.com/in/alex-conesa-piñeiro](https://www.linkedin.com/in/alex-conesa-pi%C3%B1eiro/)
 - 📧 **Email**: alexconepi@gmail.com
-- 🐙 **GitHub**: [github.com/YOUR_USERNAME](https://github.com/YOUR_USERNAME)
+- 🐙 **GitHub**: [github.com/alexconepi-cmd](https://github.com/alexconepi-cmd)
 
 ### About This Project
 This project was built as a hands-on learning experience to demonstrate practical skills in:

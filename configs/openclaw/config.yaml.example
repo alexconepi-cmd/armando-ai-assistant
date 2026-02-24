@@ -1,49 +1,12 @@
-# Armando AI Assistant - OpenClaw Configuration
-# =============================================
-
-# Agent identity
+# Armando AI Assistant Configuration
 agent:
   name: "Armando 🦞"
-  description: "AI Assistant for Career Development & Automation"
   model: "deepseek/deepseek-chat"
   
-# Telegram integration
 telegram:
   enabled: true
-  bot_token: "${TELEGRAM_BOT_TOKEN}"
-  allowed_users: ["1440291796"]  # Your Telegram user ID
+  ot_token: "${TELEGRAM_BOT_TOKEN}"
   
-# AI provider (DeepSeek)
 deepseek:
   api_key: "${DEEPSEEK_API_KEY}"
   base_url: "https://api.deepseek.com"
-  model: "deepseek-chat"
-  temperature: 0.7
-  max_tokens: 2000
-  
-# Workspace configuration
-workspace:
-  path: "/home/openclaw/.openclaw/workspace"
-  memory_enabled: true
-  auto_save: true
-  
-# Security settings
-security:
-  require_authentication: true
-  allowed_commands: ["read", "write", "exec", "process"]
-  restricted_commands: ["rm", "format", "shutdown"]
-  
-# Skills configuration
-skills:
-  enabled_skills:
-    - "healthcheck"
-    - "tmux"
-    - "weather"
-    - "skill-creator"
-  
-# Logging
-logging:
-  level: "info"
-  file: "/var/log/openclaw/agent.log"
-  max_size: "10MB"
-  max_files: 5
