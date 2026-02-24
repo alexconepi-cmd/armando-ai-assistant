@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Check shell scripts
+      run: |
+        find . -name "*.sh" -type f -exec shellcheck {} \;
+    
+    - name: Check markdown files
+      run: |
+        find . -name "*.md" -type f -exec markdownlint {} \;
+    
+    - name: Validate YAML files
+      run: |
+        find . -name "*.yml" -o -name "*.yaml" -type f | while read file; do
+          echo "Checking $file"
+          yamllint "$file" || true
+        done
+    
+    - name: Check repository structure
+      run: |
+        echo "Checking required files..."
+        [ -f "README.md" ] || echo "ERROR: README.md missing"
+        [ -f "LICENSE" ] || echo "ERROR: LICENSE missing"
+        [ -f "CHANGELOG.md" ] || echo "ERROR: CHANGELOG.md missing"
+        [ -f ".gitignore" ] || echo "ERROR: .gitignore missing"
+        [ -f "scripts/setup-vps.sh" ] || echo "ERROR: setup-vps.sh missing"
