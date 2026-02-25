@@ -118,6 +118,12 @@ This project was built as a **rapid learning exercise** to demonstrate:
 - Firewall configured to allow only necessary ports
 - Regular security updates and monitoring implemented
 
+## 🖼️ Project Screenshots
+
+### Telegram Interface
+![Telegram Conversation](https://via.placeholder.com/800x400/4A90E2/FFFFFF?text=Telegram+Bot+in+Action)
+*Example of career coaching conversation with the AI assistant*
+
 ## 📄 License
 
 MIT License - See [LICENSE](LICENSE) for details.
