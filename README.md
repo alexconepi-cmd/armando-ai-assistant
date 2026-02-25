@@ -121,7 +121,10 @@ This project was built as a **rapid learning exercise** to demonstrate:
 ## 🖼️ Project Screenshots
 
 ### Telegram Interface
-![Telegram Conversation](https://via.placeholder.com/800x400/4A90E2/FFFFFF?text=Telegram+Bot+in+Action)
+<img width="1720" height="1411" alt="Image" src="https://github.com/user-attachments/assets/d6cb430e-6263-4fbe-a246-e239225cad70" />
+<img width="1721" height="1413" alt="Image" src="https://github.com/user-attachments/assets/deafb8eb-1915-498b-b619-3f0e0356f8bd" />
+<img width="1721" height="1411" alt="Image" src="https://github.com/user-attachments/assets/a46c26f8-80a3-4da5-9e9a-4f7b32d8a858" />
+<img width="1720" height="1412" alt="Image" src="https://github.com/user-attachments/assets/4fb3e1f7-b37c-4574-b79d-ef4878f3b525" />
 *Example of career coaching conversation with the AI assistant*
 
 ## 📄 License
