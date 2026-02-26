@@ -1,137 +1,56 @@
-# 🤖 Armando AI Assistant - Career Development & Automation
+# 🤖 Armando: My Personal AI Assistant & DevOps Sandbox
 
 [![CI Check](https://github.com/alexconepi-cmd/armando-ai-assistant/actions/workflows/ci.yml/badge.svg)](https://github.com/alexconepi-cmd/armando-ai-assistant/actions/workflows/ci.yml)
 [![GitHub last commit](https://img.shields.io/github/last-commit/alexconepi-cmd/armando-ai-assistant)](https://github.com/alexconepi-cmd/armando-ai-assistant/commits/main)
 [![GitHub](https://img.shields.io/github/license/alexconepi-cmd/armando-ai-assistant)](https://github.com/alexconepi-cmd/armando-ai-assistant/blob/main/LICENSE)
 
-**A fully functional AI assistant running 24/7 on a VPS, built from scratch in 5 days. Demonstrates practical DevOps, system integration, and AI automation skills.**
+> **TL;DR:** I built a 24/7 personal AI assistant in 5 days. This project isn't just a simple Telegram bot wrapper; it's my hands-on deep dive into VPS management, Linux security, and AI agent frameworks.
 
-## 🎯 Project Overview
+## 🎯 What is Armando?
 
-This project showcases the ability to rapidly learn and implement complex systems. In just 5 days, I configured a complete AI assistant infrastructure including:
+Armando is a conversational AI agent currently acting as my personal career coach. But more importantly, **it's my live testing ground.** As a Junior Developer transitioning into AI and Automation, I needed a real-world project to break things, fix them, and learn how to deploy systems securely. I built this using an intensive "learning by doing" approach. While I used AI tools (ChatGPT/Gemini) as pair-programmers to navigate unfamiliar Linux configurations, the architecture, debugging, and system integration are the result of my own trial and error.
 
-- **VPS Management**: Ubuntu Server setup with security hardening
-- **AI Integration**: OpenClaw agent framework + DeepSeek API
-- **Communication Layer**: Telegram Bot for 24/7 accessibility
-- **DevOps Practices**: Automated deployment, monitoring, and security
+## 🏗️ The Tech Stack & Architecture
 
-## 🚀 Technical Implementation
+Instead of taking the easy route (like hosting on a simple PaaS), I wanted to understand the infrastructure from the ground up:
 
-### Infrastructure
-- **VPS**: Ubuntu 22.04 LTS with UFW firewall and Fail2Ban
-- **Security**: SSH key authentication only, non-root user execution
-- **Services**: systemd for 24/7 operation with auto-restart
-- **Monitoring**: Basic resource tracking and log management
+* **The Brain:** OpenClaw framework connected to the **DeepSeek API** (giving Armando a massive 200K context window, persistent memory, and basic web fetching).
+* **The Interface:** Telegram Bot API, so I can talk to my server from anywhere.
+* **The Infrastructure:** A personal VPS running **Ubuntu 22.04 LTS**.
+* **The Engine:** `systemd` daemon configured to ensure Armando runs 24/7 with auto-restarts if something crashes.
 
-### System Architecture
-```
-User → Telegram Bot → OpenClaw Agent → DeepSeek API → Response → User
-       (Interface)     (Processing)     (AI Engine)    (Output)
-```
+## 🔒 Security First
 
-### Key Components
-1. **OpenClaw Agent**: Core AI framework with persistent memory
-2. **DeepSeek API**: 200K context window for intelligent responses
-3. **Telegram Bot**: User-friendly interface accessible anywhere
-4. **Bash Automation**: Scripts for reproducible deployment
+One of my main goals was to learn how to secure a server properly before exposing a bot to the internet. I manually configured:
+* **UFW (Uncomplicated Firewall):** Blocking everything except essential ports.
+* **Fail2Ban:** To protect against brute-force attacks.
+* **SSH Hardening:** Disabled password authentication and root login (access strictly via SSH keys).
+
+## 🛣️ Roadmap: What's Next? (The Python Transition)
+
+Currently, the setup and configurations are heavily reliant on **Shell scripts, JSON, and YAML**. 
+
+However, I am currently enrolled in the *Google IT Automation with Python Professional Certificate*. My immediate roadmap for Armando includes:
+- [ ] Refactor the JSON/YAML configuration management into clean **Python** code.
+- [ ] Add custom Python scripts for log monitoring and self-healing.
+- [ ] Expand Armando's capabilities beyond conversation (e.g., executing system tasks via Python).
 
 ## 📁 Project Structure
 
-```
+```text
 armando-ai-assistant/
-├── scripts/
-│   └── setup-vps.sh           # Automated VPS configuration
+├── scripts/           # Automated VPS configuration (Bash)
 ├── configs/
-│   ├── openclaw/              # AI agent configuration
-│   ├── systemd/               # Service management
-│   └── security/              # Security configurations
-├── docs/                      # Setup and architecture guides
-└── examples/                  # Usage examples
+│   ├── openclaw/      # AI agent configuration (JSON/YAML)
+│   ├── systemd/       # Service management
+│   └── security/      # Security configurations
+├── docs/              # Setup and architecture guides
+└── examples/          # Usage examples
 ```
 
-## 🔧 Skills Demonstrated
+🖼️ See it in action
+<img width="800" alt="Career coaching conversation with Armando" src="https://github.com/user-attachments/assets/d6cb430e-6263-4fbe-a246-e239225cad70" />
 
-### DevOps & System Administration
-- **VPS Configuration**: Ubuntu Server setup from scratch
-- **Security Hardening**: Firewall, SSH, user permissions
-- **Service Management**: systemd for reliable 24/7 operation
-- **Automation**: Bash scripts for reproducible deployment
+(Example of a career coaching conversation with the AI assistant. Check the examples/ folder for more).
 
-### System Integration
-- **API Integration**: REST APIs (Telegram, DeepSeek)
-- **Multi-Service Coordination**: Seamless component interaction
-- **File System Management**: Persistent storage and workspace
-- **Environment Configuration**: Secure variable management
-
-### AI & Automation
-- **Prompt Engineering**: Context-aware conversation design
-- **Memory Persistence**: File-based conversation history
-- **Skill Development**: Custom automation workflows
-- **Agent Configuration**: Behavior tuning and optimization
-
-## 🛠️ Quick Start
-
-```bash
-# Clone and setup
-git clone https://github.com/alexconepi-cmd/armando-ai-assistant.git
-cd armando-ai-assistant
-chmod +x scripts/setup-vps.sh
-
-# Review and customize (security first!)
-nano configs/security/ssh_config.example
-./scripts/setup-vps.sh
-```
-
-## 📈 Learning Outcomes
-
-This project was built as a **rapid learning exercise** to demonstrate:
-
-1. **Accelerated Skill Acquisition**: Complex system implemented in 5 days
-2. **Practical Problem Solving**: Real-world infrastructure challenges
-3. **Technical Adaptability**: Multiple technologies integrated seamlessly
-4. **Production Mindset**: Security, reliability, and maintenance considered
-
-## 🎯 Why This Project Stands Out
-
-### For Junior Developer Roles
-- **Proactive Learning**: Built without formal training or supervision
-- **Full Stack Understanding**: Infrastructure → application → user interface
-- **Production Ready**: Security, monitoring, and automation implemented
-- **Documentation**: Clear setup and architecture documentation
-
-### Technical Depth
-- Not just "another tutorial project" - actual 24/7 running system
-- Demonstrates understanding of Linux, networking, and services
-- Shows ability to integrate disparate technologies
-- Includes error handling and recovery mechanisms
-
-## 📚 Documentation
-
-- **`docs/setup-guide.md`**: Step-by-step installation instructions
-- **`docs/architecture.md`**: System design and component interaction
-- **`examples/basic-usage.md`**: Practical usage examples
-
-## 🔒 Security Notes
-
-- All sensitive data (API keys, tokens) use environment variables
-- SSH key authentication with root login disabled
-- Firewall configured to allow only necessary ports
-- Regular security updates and monitoring implemented
-
-## 🖼️ Project Screenshots
-
-### Telegram Interface
-<img width="1720" height="1411" alt="Image" src="https://github.com/user-attachments/assets/d6cb430e-6263-4fbe-a246-e239225cad70" />
-<img width="1721" height="1413" alt="Image" src="https://github.com/user-attachments/assets/deafb8eb-1915-498b-b619-3f0e0356f8bd" />
-<img width="1721" height="1411" alt="Image" src="https://github.com/user-attachments/assets/a46c26f8-80a3-4da5-9e9a-4f7b32d8a858" />
-<img width="1720" height="1412" alt="Image" src="https://github.com/user-attachments/assets/4fb3e1f7-b37c-4574-b79d-ef4878f3b525" />
-*Example of career coaching conversation with the AI assistant*
-
-## 📄 License
-
-MIT License - See [LICENSE](LICENSE) for details.
-
----
-
-**Built to demonstrate rapid learning ability and practical technical skills.**  
-*Perfect example of hands-on, production-ready project development.*
+Built by Alex Conesa Piñeiro — Always learning, always building.
